@@ -42,7 +42,7 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.fillRect(xDelta, yDelta, 200, 50);
+        g.fillRect(xDelta, yDelta, 50, 50);
 
     }
 
