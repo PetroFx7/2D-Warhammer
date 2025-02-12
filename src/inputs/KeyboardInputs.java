@@ -37,15 +37,22 @@ public class KeyboardInputs implements KeyListener {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
                 gamePanel.setDirection(UP);
+                System.out.println("W Clicked");
                 break;
             case KeyEvent.VK_A:
                 gamePanel.setDirection(LEFT);
+
+                System.out.println("A Clicked");
                 break;
             case KeyEvent.VK_S:
                 gamePanel.setDirection(DOWN);
+
+                System.out.println("S Clicked");
                 break;
             case KeyEvent.VK_D:
                 gamePanel.setDirection(RIGHT);
+
+                System.out.println("D Clicked");
                 break;
         }
     }
