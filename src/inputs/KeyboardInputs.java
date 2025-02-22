@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import main.GamePanel;
+
 import static utilz.Constants.Directions.*;
 
 public class KeyboardInputs implements KeyListener {
@@ -23,10 +24,13 @@ public class KeyboardInputs implements KeyListener {
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
+                gamePanel.getGame().getPlayer().setUp(false);
             case KeyEvent.VK_A:
+                gamePanel.getGame().getPlayer().setLeft(false);
             case KeyEvent.VK_S:
+                gamePanel.getGame().getPlayer().setDown(false);
             case KeyEvent.VK_D:
-                gamePanel.setMoving(false);
+                gamePanel.getGame().getPlayer().setRight(false);
                 //true для прижку
                 break;
         }
@@ -36,22 +40,19 @@ public class KeyboardInputs implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
-                gamePanel.setDirection(UP);
+                gamePanel.getGame().getPlayer().setUp(true);
                 System.out.println("W Clicked");
                 break;
             case KeyEvent.VK_A:
-                gamePanel.setDirection(LEFT);
-
+                gamePanel.getGame().getPlayer().setLeft(true);
                 System.out.println("A Clicked");
                 break;
             case KeyEvent.VK_S:
-                gamePanel.setDirection(DOWN);
-
+                gamePanel.getGame().getPlayer().setDown(true);
                 System.out.println("S Clicked");
                 break;
             case KeyEvent.VK_D:
-                gamePanel.setDirection(RIGHT);
-
+                gamePanel.getGame().getPlayer().setRight(true);
                 System.out.println("D Clicked");
                 break;
         }
