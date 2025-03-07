@@ -41,43 +41,52 @@ public class Player extends Entity {
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex++;
-            if (aniIndex >= GetSpriteAmount(playerAction))
+            if (aniIndex >= GetSpriteAmount(playerAction)) {
                 aniIndex = 0;
+                attacking = false;
+            }
         }
-
     }
 
     private void setAnimation() {
+        int startAni = playerAction;
         if (moving)
             playerAction = RUNNING;
         else
             playerAction = IDLE;
-        if(attacking)
+        if (attacking)
             playerAction = ATTACK;
+        if (startAni != playerAction)
+            resetAniTick();
+    }
+
+    private void resetAniTick() {
+        aniIndex = 0;
+        aniTick = 0;
     }
 
     private void updatePos() {
 
         moving = false;
 
-        if(left && !right){
+        if (left && !right) {
             x -= playerSpeed;
             moving = true;
-        }else if(right && !left){
+        } else if (right && !left) {
             x += playerSpeed;
             moving = true;
         }
-        if(up && !down){
+        if (up && !down) {
             y -= playerSpeed;
             moving = true;
-        }else if(down && !up){
+        } else if (down && !up) {
             y += playerSpeed;
             moving = true;
         }
     }
 
     private void loadAnimations() {
-        InputStream is = getClass().getResourceAsStream("/res/animation.png");
+        InputStream is = getClass().getResourceAsStream("/res/animation-export.png");
         try {
             BufferedImage img = ImageIO.read(is);
             animations = new BufferedImage[3][5];
@@ -95,6 +104,7 @@ public class Player extends Entity {
         }
 
     }
+
     public void resetDirBooleans() {
         left = right = up = down = false;
     }
