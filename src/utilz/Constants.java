@@ -9,12 +9,13 @@ public class Constants {
         public static final int DOWN = 3;
     }
 
+    //для анімації прижку та падіння використовуй значення IDLE
     public static class PlayerConstants {
         public static final int IDLE = 0;
         public static final int RUNNING = 1;
         public static final int ATTACK = 2;
-//        public static final int JUMP = 2;
-//        public static final int FALLING = 3;
+        public static final int JUMP = 3;
+        public static final int FALLING = 4;
 //        public static final int GROUND = 4;
 //        public static final int HIT = 5;
 //        public static final int ATTACK_1 = 6;
@@ -29,14 +30,14 @@ public class Constants {
                     return 5;
 //                case HIT:
 //                    return 4;
-//                case JUMP:
+                case JUMP:
 //                case ATTACK_1:
 //                case ATTACK_JUMP_1:
 //                case ATTACK_JUMP_2:
 //                    return 3;
 //                case GROUND:
 //                    return 2;
-//                case FALLING:
+                case FALLING:
                 default:
                     return 1;
             }
