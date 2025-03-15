@@ -31,7 +31,6 @@ public class KeyboardInputs implements KeyListener {
                 gamePanel.getGame().getPlayer().setDown(false);
             case KeyEvent.VK_D:
                 gamePanel.getGame().getPlayer().setRight(false);
-                //true для прижку
                 break;
         }
     }
