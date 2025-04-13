@@ -3,8 +3,10 @@ package inputs;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseAdapter;
 
 import main.GamePanel;
+import objects.Projectile;
 
 public class MouseInputs implements MouseListener, MouseMotionListener {
 
@@ -30,6 +32,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         System.out.println("Mouse Clicked");
         if (e.getButton() == MouseEvent.BUTTON1)
             gamePanel.getGame().getPlayer().setAttacking(true);
+
 
     }
 
