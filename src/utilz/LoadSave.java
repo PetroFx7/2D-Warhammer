@@ -12,6 +12,7 @@ public class LoadSave {
     public static final String PLAYER_ATLAS = "animation-export.png";
     public static final String LEVEL_ATLAS = "Terrain (32x32)-export.png";
     public static final String LEVEL_ONE_DATA = "level_one_data.png";
+    public static final String BULLET = "Bullet.png";
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage img = null;

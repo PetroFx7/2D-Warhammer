@@ -1,12 +1,17 @@
 package utilz;
 
 
+import main.Game;
+
 public class Constants {
-    public static class Directions {
-        public static final int LEFT = 0;
-        public static final int UP = 1;
-        public static final int RIGHT = 2;
-        public static final int DOWN = 3;
+
+    public static class Projectiles{
+        public static final int BULLET_DEFAULT_WIDTH = 15;
+        public static final int BULLET_DEFAULT_HEIGHT = 15;
+
+        public static final int BULLET_WIDTH = (int)(Game.SCALE * BULLET_DEFAULT_WIDTH);
+        public static final int BULLET_HEIGHT = (int)(Game.SCALE * BULLET_DEFAULT_HEIGHT);
+        public static float SPEED = 0.5f * Game.SCALE;
     }
 
     //для анімації прижку та падіння використовуй значення IDLE
