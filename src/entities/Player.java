@@ -4,6 +4,7 @@ import static utilz.Constants.PlayerConstants.*;
 import static utilz.HelpMethods.*;
 
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import main.Game;
@@ -216,6 +217,18 @@ public class Player extends Entity {
 
     public void setJump(boolean jump) {
         this.jump = jump;
+    }
+
+    public float getX() {
+        return hitbox.x;
+    }
+
+    public float getY() {
+        return hitbox.y;
+    }
+
+    public Rectangle2D.Float getHitbox() {
+        return hitbox;
     }
 
 }
