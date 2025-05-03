@@ -11,7 +11,7 @@ public class Constants {
 
         public static final int BULLET_WIDTH = (int)(Game.SCALE * BULLET_DEFAULT_WIDTH);
         public static final int BULLET_HEIGHT = (int)(Game.SCALE * BULLET_DEFAULT_HEIGHT);
-        public static float SPEED = 0.5f * Game.SCALE;
+        public static float SPEED = 2.2f * Game.SCALE;
     }
 
     //для анімації прижку та падіння використовуй значення IDLE
