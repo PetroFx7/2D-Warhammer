@@ -49,12 +49,10 @@ public class Playing extends State implements Statemethods {
 
     @Override
     public void update() {
+        if (!paused) {
         levelManager.update();
         player.update();
         objectManager.update();
-        if (!paused) {
-            levelManager.update();
-            player.update();
         } else {
             pauseOverlay.update();
         }
@@ -66,7 +64,8 @@ public class Playing extends State implements Statemethods {
         player.render(g);
         objectManager.draw(g);
 
-        pauseOverlay.draw(g);
+        if (paused)
+            pauseOverlay.draw(g);
     }
 
     @Override
@@ -74,6 +73,13 @@ public class Playing extends State implements Statemethods {
         System.out.println("Mouse Clicked");
         if (e.getButton() == MouseEvent.BUTTON1)
             player.setAttacking(true);
+    }
+
+    public void mouseDragged(MouseEvent e){
+        if(paused){
+            pauseOverlay.mouseDragged(e);
+        }
+
     }
 
     @Override
@@ -114,6 +120,9 @@ public class Playing extends State implements Statemethods {
                 break;
             case KeyEvent.VK_SPACE:
                 player.setJump(true);
+                break;
+            case KeyEvent.VK_ESCAPE:
+                paused = !paused;
                 break;
         }
     }

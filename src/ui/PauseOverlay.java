@@ -13,8 +13,7 @@ import java.awt.image.BufferedImage;
 
 import static utilz.Constants.UI.PauseButtons.*;
 import static utilz.Constants.UI.URMButtons.*;
-import static utilz.Constants.UI.VolumeButtons.SLIDER_WIDTH;
-import static utilz.Constants.UI.VolumeButtons.VOLUME_HEIGHT;
+import static utilz.Constants.UI.VolumeButtons.*;
 
 
 public class PauseOverlay {
@@ -104,8 +103,8 @@ public class PauseOverlay {
     public void mouseDragged(MouseEvent e) {
         if (volumeButton.isMousePressed()) {
             volumeButton.changeX(e.getX());
-        }
 
+        }
     }
 
     public void mousePressed(MouseEvent e) {

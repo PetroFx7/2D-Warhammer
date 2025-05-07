@@ -7,7 +7,7 @@ import ui.PauseButton;
 import utilz.LoadSave;
 import static utilz.Constants.UI.VolumeButtons.*;
 
-public class VolumeButton extends PauseButton {
+public class    VolumeButton extends PauseButton {
 
     private BufferedImage[] imgs;
     private BufferedImage slider;
