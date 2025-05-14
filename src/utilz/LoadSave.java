@@ -11,7 +11,8 @@ import java.io.InputStream;
 public class LoadSave {
     public static final String PLAYER_ATLAS = "animation-export.png";
     public static final String LEVEL_ATLAS = "Terrain (32x32)-export.png";
-    public static final String LEVEL_ONE_DATA = "level_one_data.png";
+   // public static final String LEVEL_ONE_DATA = "level_one_data.png";
+    public static final String LEVEL_ONE_DATA = "level_one_data_long.png";
     public static final String BULLET = "Bullet.png";
     public static final String MENU_BUTTONS = "button_atlas_sexx.png";
     public static final String MENU_BACKGROUND = "menu_backgroundBlue.png";
@@ -40,9 +41,9 @@ public class LoadSave {
     }
 
     public static int[][] GetLevelData() {
-        int[][] lvlData = new int[Game.TILES_IN_HEIGHT][Game.TILES_IN_WIDTH];
-        BufferedImage img = GetSpriteAtlas(LEVEL_ONE_DATA);
 
+        BufferedImage img = GetSpriteAtlas(LEVEL_ONE_DATA);
+        int[][] lvlData = new int[img.getHeight()][img.getWidth()];
         for (int i = 0; i < img.getHeight(); i++)
             for (int j = 0; j < img.getWidth(); j++) {
                 Color color = new Color(img.getRGB(j, i));
