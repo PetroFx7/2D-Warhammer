@@ -2,6 +2,8 @@ package objects;
 
 import entities.Player;
 import main.Game;
+import static utilz.Constants.Projectiles.*;
+
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -26,20 +28,23 @@ public class ObjectManager {
 
     public void mousePressed(MouseEvent e) {
         System.out.println("ObjectManager: mousePressed");
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            float bulletX = player.getHitbox().x + player.getHitbox().width * 2;
-            float bulletY = player.getHitbox().y + player.getHitbox().height / 5;
-            int dir = 1;
 
-            if (player.isLeft())
-                dir = -1;
-            else if (player.isRight())
-                dir = 1;
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            float bulletX;
+            float bulletY = player.getHitbox().y + player.getHitbox().height / 2;
+            int dir = player.isLeft() ? -1 : 1;
+
+            if (dir == 1) {
+                bulletX = player.getHitbox().x + player.getHitbox().width;
+            } else {
+                bulletX = player.getHitbox().x - BULLET_WIDTH;
+            }
 
             projectiles.add(new Projectile((int) bulletX, (int) bulletY, dir));
             System.out.println("Bullet created at: " + bulletX + ", " + bulletY);
         }
     }
+
 
     public void update() {
         for (Projectile p : projectiles) {
@@ -49,8 +54,10 @@ public class ObjectManager {
                 float x = p.getHitBox().x;
                 float y = p.getHitBox().y;
 
-                if (x < 0 || x > game.GAME_WIDTH)
+                int levelWidth = lvlData[0].length * Game.TILES_SIZE;
+                if (x < 0 || x > levelWidth)
                     p.setActive(false);
+
 
                 if (!utilz.HelpMethods.CanMoveHere(
                         x, y,
@@ -65,14 +72,14 @@ public class ObjectManager {
         projectiles.removeIf(p -> !p.isActive());
     }
 
-    public void draw(Graphics g) {
+    public void draw(Graphics g, int xLvlOffset) {
         for (Projectile p : projectiles) {
             if (p.isActive()) {
-                p.draw(g);
+                p.draw(g, xLvlOffset);
             }
         }
-
     }
+
 
 
 }
