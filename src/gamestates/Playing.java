@@ -30,6 +30,7 @@ public class Playing extends State implements Statemethods {
     private int maxTilesOffset = lvlTilesWide - Game.TILES_IN_WIDTH;
     private int maxLvlOffsetX= maxTilesOffset * Game.TILES_SIZE;
 
+
     private BufferedImage backgroundImg, redMoon;
 
 
