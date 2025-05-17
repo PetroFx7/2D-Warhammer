@@ -5,6 +5,16 @@ import main.Game;
 
 public class Constants {
 
+    public static class Environment {
+        public static final int MOON_WIDTH_DEFAULT = 108;
+        public static final int MOON_HEIGHT_DEFAULT = 108;
+
+        public static final int MOON_WIDTH = (int) (MOON_WIDTH_DEFAULT * Game.SCALE);
+        public static final int MOON_HEIGHT = (int) (MOON_HEIGHT_DEFAULT * Game.SCALE);
+
+    }
+
+
     public static class UI{
         public static class Buttons{
             public static final int B_WIDTH_DEFAULT = 140;
