@@ -50,11 +50,21 @@ public class Player extends Entity {
         updatePos();
         updateAnimationTick();
         setAnimation();
+
+
     }
 
     public void render(Graphics g, int lvlOffset) {
-        g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset, (int) (hitbox.y - yDrawOffset), width, height, null);
-        drawHitbox(g, lvlOffset);
+        if (left) {
+            g.drawImage(animations[playerAction][aniIndex],
+                    (int)(hitbox.x - xDrawOffset) - lvlOffset + width, (int)(hitbox.y - yDrawOffset),
+                    -width, height, null);
+        } else {
+            g.drawImage(animations[playerAction][aniIndex],
+                    (int)(hitbox.x - xDrawOffset) - lvlOffset, (int)(hitbox.y - yDrawOffset),
+                    width, height, null);
+        }
+//        drawHitbox(g, lvlOffset);
 
 
     }
@@ -73,6 +83,7 @@ public class Player extends Entity {
 
     private void setAnimation() {
         int startAni = playerAction;
+
         if (moving)
             playerAction = RUNNING;
         else
@@ -87,9 +98,11 @@ public class Player extends Entity {
 
         if (attacking)
             playerAction = ATTACK;
+
         if (startAni != playerAction)
             resetAniTick();
     }
+
 
     private void resetAniTick() {
         aniTick = 0;
@@ -101,11 +114,9 @@ public class Player extends Entity {
 
         if (jump)
             jump();
-        //if (!left && !right && !inAir)
-         //   return;
 
-        if(!inAir)
-            if((!left && !right) || (right && left ))
+        if (!inAir)
+            if ((!left && !right) || (right && left))
                 return;
 
         float xSpeed = 0;
@@ -115,9 +126,12 @@ public class Player extends Entity {
         if (right)
             xSpeed += playerSpeed;
 
-        if (!inAir)
-            if (!IsEntityOnFloor(hitbox, lvlData))
-                inAir = true;
+        if (IsEntityOnFloor(hitbox, lvlData) && airSpeed >= 0) {
+            resetInAir();
+        } else {
+            inAir = true;
+        }
+
 
         if (inAir) {
             if (CanMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
