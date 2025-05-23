@@ -53,7 +53,6 @@ public class Constants {
         public static float SPEED = 2.2f * Game.SCALE;
     }
 
-    //для анімації прижку та падіння використовуй значення IDLE
     public static class PlayerConstants {
         public static final int IDLE = 0;
         public static final int RUNNING = 1;
@@ -72,8 +71,8 @@ public class Constants {
                     return 5;
                 case IDLE:
                     return 5;
-//                case HIT:
-//                    return 4;
+                case ATTACK:
+                    return 2;
                 case JUMP:
 //                case ATTACK_1:
 //                case ATTACK_JUMP_1:

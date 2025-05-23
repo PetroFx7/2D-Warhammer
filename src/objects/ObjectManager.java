@@ -31,11 +31,11 @@ public class ObjectManager {
 
         if (e.getButton() == MouseEvent.BUTTON1) {
             float bulletX;
-            float bulletY = player.getHitbox().y + player.getHitbox().height / 2;
+            float bulletY = player.getHitbox().y + player.getHitbox().height / 3.43f;
             int dir = player.isLeft() ? -1 : 1;
 
             if (dir == 1) {
-                bulletX = player.getHitbox().x + player.getHitbox().width;
+                bulletX = player.getHitbox().x + player.getHitbox().width * 2;
             } else {
                 bulletX = player.getHitbox().x - BULLET_WIDTH;
             }
@@ -79,7 +79,4 @@ public class ObjectManager {
             }
         }
     }
-
-
-
 }
