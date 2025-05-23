@@ -42,7 +42,8 @@ public class Projectile {
         return active;
     }
 
-    public void draw(Graphics g) {
-        g.drawImage(bulletImg, (int) hitBox.x, (int) hitBox.y, BULLET_WIDTH, BULLET_HEIGHT, null);
+    public void draw(Graphics g, int xLvlOffset) {
+        g.drawImage(bulletImg, (int) (hitBox.x - xLvlOffset), (int) hitBox.y, BULLET_WIDTH, BULLET_HEIGHT, null);
     }
+
 }
