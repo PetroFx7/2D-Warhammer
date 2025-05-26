@@ -5,6 +5,47 @@ import main.Game;
 
 public class Constants {
 
+    public static class EnemyConstants {
+        public static final int THORNBACK = 0;
+
+        public static final int IDLE = 3;
+        public static final int RUNNING = 0;
+        public static final int ATTACK = 1;
+        // public static final int HIT = 3;
+        public static final int DEAD = 2;
+
+        public static final int THORNBACK_WIDTH_DEFAULT = 64;
+        public static final int THORNBACK_HEIGHT_DEFAULT = 64;
+
+        public static final int THORNBACK_WIDTH = (int) (THORNBACK_WIDTH_DEFAULT * Game.SCALE);
+        public static final int THORNBACK_HEIGHT = (int) (THORNBACK_HEIGHT_DEFAULT * Game.SCALE);
+
+        public static final int THORNBACK_DRAWOFFSET_X= (int) (10 * Game.SCALE);
+        public static final int THORNBACK_DRAWOFFSET_Y= (int) (10 * Game.SCALE);
+
+        public static int GetSpriteAmount(int enemy_type, int enemy_state) {
+            switch (enemy_type) {
+                case THORNBACK:
+                    switch (enemy_state) {
+                        case IDLE:
+                            return 4;
+                        case RUNNING:
+                        case ATTACK:
+                        // case HIT:
+                        // return 4;
+                        case DEAD:
+                            return 4;
+
+                        default:
+                            return 0;
+                    }
+                default:
+                    return 0;
+            }
+        }
+    }
+
+
     public static class Environment {
         public static final int MOON_WIDTH_DEFAULT = 108;
         public static final int MOON_HEIGHT_DEFAULT = 108;
