@@ -8,11 +8,10 @@ public class Constants {
     public static class EnemyConstants {
         public static final int THORNBACK = 0;
 
-        public static final int IDLE = 3;
-        public static final int RUNNING = 0;
-        public static final int ATTACK = 1;
-        // public static final int HIT = 3;
-        public static final int DEAD = 2;
+        public static final int IDLE = 0;
+        public static final int RUNNING = 1;
+        public static final int ATTACK = 2;
+        public static final int DEAD = 3;
 
         public static final int THORNBACK_WIDTH_DEFAULT = 64;
         public static final int THORNBACK_HEIGHT_DEFAULT = 64;
@@ -30,12 +29,11 @@ public class Constants {
                         case IDLE:
                             return 4;
                         case RUNNING:
+                            return 4;
                         case ATTACK:
-                        // case HIT:
-                        // return 4;
+                            return 4;
                         case DEAD:
                             return 4;
-
                         default:
                             return 0;
                     }
@@ -44,6 +42,11 @@ public class Constants {
             }
         }
     }
+    public static class Directions {
+        public static final int LEFT = 0;
+        public static final int RIGHT = 2;
+    }
+
 
 
     public static class Environment {
@@ -100,11 +103,7 @@ public class Constants {
         public static final int ATTACK = 2;
         public static final int JUMP = 3;
         public static final int FALLING = 4;
-//        public static final int GROUND = 4;
-//        public static final int HIT = 5;
-//        public static final int ATTACK_1 = 6;
-//        public static final int ATTACK_JUMP_1 = 7;
-//        public static final int ATTACK_JUMP_2 = 8;
+
 
         public static int GetSpriteAmount(int player_action) {
             switch (player_action) {
@@ -115,12 +114,6 @@ public class Constants {
                 case ATTACK:
                     return 2;
                 case JUMP:
-//                case ATTACK_1:
-//                case ATTACK_JUMP_1:
-//                case ATTACK_JUMP_2:
-//                    return 3;
-//                case GROUND:
-//                    return 2;
                 case FALLING:
                 default:
                     return 1;

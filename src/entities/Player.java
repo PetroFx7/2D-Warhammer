@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import gamestates.Gamestates;
 import main.Game;
 import utilz.LoadSave;
 
@@ -38,6 +39,11 @@ public class Player extends Entity {
 
     // Рівень
     private int[][] lvlData;
+
+    // Інше
+    private int maxHealth = 100;
+    private int currentHealth = maxHealth;
+    private boolean alive = true;
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
@@ -77,6 +83,7 @@ public class Player extends Entity {
             if (aniIndex >= GetSpriteAmount(playerAction)) {
                 aniIndex = 0;
                 attacking = false;
+
             }
         }
     }
@@ -198,6 +205,30 @@ public class Player extends Entity {
         up = false;
         down = false;
     }
+    public void hurt(int damage) {
+        if (!alive)
+            return;
+
+        currentHealth -= damage;
+        if (currentHealth <= 0) {
+            currentHealth = 0;
+            die();
+        }
+    }
+
+    public void heal(int amount) {
+        currentHealth += amount;
+        if (currentHealth > maxHealth) {
+            currentHealth = maxHealth;
+        }
+    }
+
+    private void die() {
+        alive = false;
+        Gamestates.state = Gamestates.GAME_OVER; // Зупиняємо гру
+    }
+
+
 
     public void setAttacking(boolean attacking) {
         this.attacking = attacking;
@@ -211,28 +242,12 @@ public class Player extends Entity {
         this.left = left;
     }
 
-    public boolean isUp() {
-        return up;
-    }
-
-    public void setUp(boolean up) {
-        this.up = up;
-    }
-
     public boolean isRight() {
         return right;
     }
 
     public void setRight(boolean right) {
         this.right = right;
-    }
-
-    public boolean isDown() {
-        return down;
-    }
-
-    public void setDown(boolean down) {
-        this.down = down;
     }
 
     public void setJump(boolean jump) {
@@ -246,9 +261,19 @@ public class Player extends Entity {
     public float getY() {
         return hitbox.y;
     }
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
 
     public Rectangle2D.Float getHitbox() {
         return hitbox;
     }
-
 }

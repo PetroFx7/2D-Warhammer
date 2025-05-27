@@ -1,5 +1,6 @@
 package objects;
 
+import entities.EnemyManager;
 import entities.Player;
 import main.Game;
 import static utilz.Constants.Projectiles.*;
@@ -11,15 +12,17 @@ import java.util.ArrayList;
 
 
 public class ObjectManager {
+    private EnemyManager enemyManager;
     private Player player;
     private Game game;
     private ArrayList<Projectile> projectiles = new ArrayList<>();
     private int[][] lvlData;
 
 
-    public ObjectManager(Player player, Game game) {
+    public ObjectManager(Player player, Game game,EnemyManager enemyManager) {
         this.player = player;
         this.game = game;
+        this.enemyManager = enemyManager;
     }
 
     public void loadLvlData(int[][] lvlData) {
@@ -27,7 +30,6 @@ public class ObjectManager {
     }
 
     public void mousePressed(MouseEvent e) {
-        System.out.println("ObjectManager: mousePressed");
 
         if (e.getButton() == MouseEvent.BUTTON1) {
             float bulletX;
@@ -41,7 +43,6 @@ public class ObjectManager {
             }
 
             projectiles.add(new Projectile((int) bulletX, (int) bulletY, dir));
-            System.out.println("Bullet created at: " + bulletX + ", " + bulletY);
         }
     }
 
@@ -67,6 +68,7 @@ public class ObjectManager {
                     p.setActive(false);
             }
         }
+        enemyManager.checkProjectileHit(projectiles);
 
         // Видалити неактивні кулі
         projectiles.removeIf(p -> !p.isActive());
@@ -79,4 +81,25 @@ public class ObjectManager {
             }
         }
     }
+    public void drawHealthBar(Graphics g) {
+        int barWidth = 100;
+        int barHeight = 10;
+        int healthBarX = 20;
+        int healthBarY = 20;
+
+        int currentHealth = player.getCurrentHealth();
+        int maxHealth = player.getMaxHealth();
+
+        g.setColor(Color.red);
+        g.fillRect(healthBarX, healthBarY, barWidth, barHeight);
+
+        g.setColor(Color.green);
+        int greenWidth = (int) ((currentHealth / (float) maxHealth) * barWidth);
+        g.fillRect(healthBarX, healthBarY, greenWidth, barHeight);
+
+        g.setColor(Color.black);
+        g.drawRect(healthBarX, healthBarY, barWidth, barHeight);
+    }
+
+
 }

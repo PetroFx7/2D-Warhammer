@@ -25,7 +25,7 @@ public class LoadSave {
     public static final String VOLUME_BUTTONS = "volume_buttons.png";
     public static final String PLAYING_BACKGROUND = "play_background.png";
     public static final String MOON_BACKGROUND = "red_moon.png";
-    public static final String FOUR_LEGS_ENEMY = "four_legs_enemy.png";
+    public static final String FOUR_LEGS_ENEMY = "Enemy_four_legs.png";
 
 
 
