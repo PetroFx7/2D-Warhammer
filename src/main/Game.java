@@ -16,6 +16,9 @@ public class Game implements Runnable {
     private final int UPS_SET = 140;
     private Playing playing;
     private Menu menu;
+    private static Gamestates state = Gamestates.PLAYING;
+
+
 
     public final static int TILES_DEFAULT_SIZE = 32;
     public final static int TILES_IN_WIDTH = 26;
@@ -55,6 +58,9 @@ public class Game implements Runnable {
             case PLAYING:
                 playing.update();
                 break;
+            case GAME_OVER:
+                // гра зупинена, нічого не оновлюємо
+                break;
             case OPTIONS:
             case QUIT:
             default:
@@ -62,6 +68,7 @@ public class Game implements Runnable {
                 break;
         }
     }
+
 
     public void render(Graphics g) {
         switch (Gamestates.state) {
@@ -71,10 +78,14 @@ public class Game implements Runnable {
             case PLAYING:
                 playing.draw(g);
                 break;
+            case GAME_OVER:
+                drawGameOverScreen(g); // Малюємо екран "Game Over"
+                break;
             default:
                 break;
         }
     }
+
 
     @Override
     public void run() {
@@ -118,6 +129,16 @@ public class Game implements Runnable {
         }
 
     }
+    public void drawGameOverScreen(Graphics g) {
+        g.setColor(Color.black);
+        g.fillRect(0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT);
+
+        g.setColor(Color.red);
+        g.setFont(new Font("Arial", Font.BOLD, 60));
+        g.drawString("Game Over", Game.GAME_WIDTH / 2 - 170, Game.GAME_HEIGHT / 2 - 40);
+    }
+
+
 
     public void windowFocusLost() {
         if (Gamestates.state == Gamestates.PLAYING)
@@ -131,5 +152,13 @@ public class Game implements Runnable {
     public Playing getPlaying() {
         return playing;
     }
+    public static Gamestates getGameState() {
+        return state;
+    }
+
+    public static void setGameState(Gamestates newState) {
+        state = newState;
+    }
+
 
 }
